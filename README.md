@@ -13,21 +13,35 @@ Provide a model that predicts the likelihood of success of a throw in an ultimat
 * Generate further interest in ultimate as measured by site visitors and page views, looking to reach X threshold and X% growth
 
 ## Planning
-### Theme 1: Generate predictions of throw success from existing data into model that can predict for new data
-**Epic**
+### Theme 1: Provide statistical insight into throws data
+**Epic 1:**
+Fit a predictive model that determines the likelihood of a given throw
+
 *Stories*
 
-### Theme 2: 
-**Epic**
+**Epic 2:**
+Score a throw-success likelihood based on user inputs to the app, including the impact of each feature on the score
+
 *Stories*
 
-### Theme 3:
+### Theme 2:
+
 
 ## Backlog
-* 
+* Create AWS Instance
+* Generate model ideas
+* Look for outside sources of data
+* Assess 
 
 ## Icebox
-* 
+* Create RDS Instance
+* Write reproducibility tests
+* Write requirements
+* Write HTML front end for app
+
+Label | Content | Score 
+------- |:------:| :-----------: 
+As a developer, I would like a data set containing text titles, their summaries, and their genre labeled so I can train my model.  | 4 | :heavy_check_mark: 
 
 ### Data Source
 * Ultimate Frisbee Throws Dataset (Collected by Tony Colucci)
