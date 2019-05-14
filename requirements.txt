@@ -9,4 +9,4 @@ pandas
 requests
 boto3
 awscli
-PyYAML<=3.13,>=3.10
+PyYAML>=4.2b1
