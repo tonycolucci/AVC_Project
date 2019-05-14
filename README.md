@@ -1,5 +1,12 @@
 # AVC_Project
 
+**Developer:**
+Tony Colucci
+
+**QA:**
+Nathan Franklin
+
+
 ## Charter
 
 **Vision:**
