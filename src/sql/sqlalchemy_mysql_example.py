@@ -8,7 +8,7 @@ import os
 
 Base = declarative_base()
 
-class Track(Base):
+class Throw(Base):
 	"""Create a data model for the database to be set up for capturing songs """
 	__tablename__ = 'tracks'
 	id = Column(Integer, primary_key=True)
@@ -22,11 +22,11 @@ class Track(Base):
 # the engine_string format
 #engine_string = "{conn_type}://{user}:{password}@{host}:{port}/DATABASE_NAME"
 conn_type = "mysql+pymysql"
-user = os.environ.get("MYSQL_USER")
+user = os.environ.get("MYSQL_USER") 
 password = os.environ.get("MYSQL_PASSWORD")
 host = os.environ.get("MYSQL_HOST")
 port = os.environ.get("MYSQL_PORT")
-DATABASE_NAME = 'msia423'
+DATABASE_NAME = 'msia423' ## UPDATE
 engine_string = "{}://{}:{}@{}:{}/{}".\
 format(conn_type, user, password, host, port, DATABASE_NAME)
 #print(engine_string)

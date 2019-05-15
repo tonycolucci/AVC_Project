@@ -1,4 +1,4 @@
-export MYSQL_USER="root"
-export MYSQL_PASSWORD=""
-export MYSQL_HOST=""
+export MYSQL_USER="admin"
+export MYSQL_PASSWORD="throwdbadmin"
+export MYSQL_HOST="nw-tonycolucci-db.ch7fpvcihm0e.us-east-2.rds.amazonaws.com"
 export MYSQL_PORT="3306"

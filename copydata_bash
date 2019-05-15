@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ "$1" == "" ]; then
+    echo "This script requires entering an s3 destination bucket as a parameter"
+else
+    echo "Moving data from 's3://nw-tonycolucci-s3/throws_clean.csv' to" $1
+    aws s3 cp s3://nw-tonycolucci-s3/throws_clean.csv $1
+fi
