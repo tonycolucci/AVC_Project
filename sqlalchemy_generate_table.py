@@ -29,7 +29,7 @@ user = os.environ.get("MYSQL_USER")
 password = os.environ.get("MYSQL_PASSWORD")
 host = os.environ.get("MYSQL_HOST")
 port = os.environ.get("MYSQL_PORT")
-DATABASE_NAME = 'nw-tonycolucci-db' ## UPDATE
+DATABASE_NAME = 'msia423' ## UPDATE
 engine_string = "{}://{}:{}@{}:{}/{}".\
 format(conn_type, user, password, host, port, DATABASE_NAME)
 #print(engine_string)
