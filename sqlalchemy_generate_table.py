@@ -40,13 +40,13 @@ Base.metadata.create_all(engine)
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 logger = logging.getLogger(__file__)
 # create a db session
-# Session = sessionmaker(bind=engine)  
-# session = Session()
-# # add a record/track
-# throw1 = Track(id = 1, hand_rl = "R", throw_type = "F", stall = 2, completion = 1, Xdist = 11, Ydist = 3)  
-# session.add(throw1)
-# session.commit()
-# query = "SELECT * FROM throws WHERE completion == 1"
-# df = pd.read_sql(query, con=engine)
-# print(df)
-# session.close()
+Session = sessionmaker(bind=engine)  
+session = Session()
+# add a record/track
+throw1 = Track(id = 1, hand_rl = "R", throw_type = "F", stall = 2, completion = 1, Xdist = 11, Ydist = 3)  
+session.add(throw1)
+session.commit()
+query = "SELECT * FROM throws WHERE completion == 1"
+df = pd.read_sql(query, con=engine)
+print(df)
+session.close()
