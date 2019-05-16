@@ -56,7 +56,7 @@ Create a clean, durable website with public access to the data
 ## Backlog
 Label | Content | Score 
 ------- |------| ----------- 
-Theme2.Epic2.Story1 | Create AWS Instancee upon which web app can be deployed | 1
+Theme2.Epic2.Story1 | Create AWS Instance upon which web app can be deployed | 1
 Theme1.Epic1.Story2 | Determine if there are outside sources of data that should be added to improve predictive power | 2
 Theme1.Epic1.Story1 | Consider options for supervised machine learning model to predict the success or failure of an ultimate frisbee throw | 3
 Theme1.Epic2.Story1 | Determine interpretability for different machine learning solutions | 1
