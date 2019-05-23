@@ -1,0 +1,99 @@
+---
+title: "Ultimate Data Modeling"
+author: "Tony Colucci"
+date: "April 9, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(rpart)
+```
+
+## Read Data
+
+```{r}
+throwDf <- read_csv("throws.csv")
+
+throwDf <- rename(throwDf,
+                  pull = 'Pull?', goal = 'Goal?', completion = 'Completed?', bad_throw = 'Bad throw?',
+                  throw_team_score = 'Throwing Team Score', def_team_score = 'Defending Team Score', 
+                  point_per_game = 'Point/Game', poss_per_point = 'Possession/Point', 
+                  score_on_poss = 'Score on this possession?', throw_per_game = 'Throw/Game',
+                  throw_per_point = "Throw/Point", throw_per_poss = "Throw/Possession", throw_team = "Throwing Team",
+                  receiver = "Throwing To", hand_rl = "Throw Hand", throw_type = "Throw Type",
+                  throw_curve = "Throw Curve")
+  # select(ThrowID, X2, GameID, throw_team_score, def_team_score, point_per_game, poss_per_point, score_on_poss,
+  #        Direction, throw_per_game, throw_per_point, throw_per_poss, throw_team, Thrower, receiver, hand_rl,
+  #        throw_type, throw_curve, Force, Stall, completion, bad_throw, GEO_Xstart, GEO_Ystart, GEO_Xend, GEO_Yend,
+  #        RO_Xstart, RO_Ystart, RO_Xend, RO_Yend, Xdist, Ydist, Dist, pull, goal)
+
+# names(throwDf)
+
+```
+
+### Filter out pulls
+```{r}
+throw_nopull_df <- filter(throwDf, is.na(pull))
+dim(throwDf)
+dim(throw_nopull_df)
+```
+
+### Convert data types
+```{r}
+throw_nopull_df$throw_team_score <- as.numeric(throw_nopull_df$throw_team_score)
+throw_nopull_df$def_team_score <- as.numeric(throw_nopull_df$def_team_score)
+throw_nopull_df$point_per_game <- as.numeric(throw_nopull_df$point_per_game)
+throw_nopull_df$poss_per_point <- as.numeric(throw_nopull_df$poss_per_point)
+throw_nopull_df$score_on_poss <- as.numeric(throw_nopull_df$score_on_poss)
+throw_nopull_df$Direction <- as.numeric(throw_nopull_df$Direction)
+throw_nopull_df$throw_per_game <- as.numeric(throw_nopull_df$throw_per_game)
+throw_nopull_df$throw_per_point <- as.numeric(throw_nopull_df$throw_per_point)
+throw_nopull_df$throw_per_poss <- as.numeric(throw_nopull_df$throw_per_poss)
+throw_nopull_df$throw_team <- as_factor(throw_nopull_df$throw_team)
+throw_nopull_df$Thrower <- as.numeric(throw_nopull_df$Thrower)
+throw_nopull_df$receiver <- as.numeric(throw_nopull_df$receiver)
+throw_nopull_df$hand_rl <- as_factor(throw_nopull_df$hand_rl)
+throw_nopull_df$throw_type <- as_factor(throw_nopull_df$throw_type)
+throw_nopull_df$throw_curve <- as_factor(throw_nopull_df$throw_curve)
+throw_nopull_df$Force <- as_factor(throw_nopull_df$Force)
+throw_nopull_df$Stall <- as.numeric(throw_nopull_df$Stall)
+throw_nopull_df$completion <- as.numeric(throw_nopull_df$completion)
+throw_nopull_df$bad_throw[is.na(throw_nopull_df$bad_throw)] <- 0
+throw_nopull_df$bad_throw <- as_factor(throw_nopull_df$bad_throw)
+throw_nopull_df$GEO_Xstart <- as.numeric(throw_nopull_df$GEO_Xstart)
+throw_nopull_df$GEO_Ystart <- as.numeric(throw_nopull_df$GEO_Ystart)
+throw_nopull_df$GEO_Xend <- as.numeric(throw_nopull_df$GEO_Xend)
+throw_nopull_df$GEO_Yend <- as.numeric(throw_nopull_df$GEO_Yend)
+throw_nopull_df$RO_Xstart <- as.numeric(throw_nopull_df$RO_Xstart)
+throw_nopull_df$RO_Ystart <- as.numeric(throw_nopull_df$RO_Ystart)
+throw_nopull_df$RO_Xend <- as.numeric(throw_nopull_df$RO_Xend)
+throw_nopull_df$RO_Yend <- as.numeric(throw_nopull_df$RO_Yend)
+throw_nopull_df$Xdist <- as.numeric(throw_nopull_df$Xdist)
+throw_nopull_df$Ydist <- as.numeric(throw_nopull_df$Ydist)
+throw_nopull_df$Dist <- as.numeric(throw_nopull_df$Dist)
+throw_nopull_df$pull <- as_factor(throw_nopull_df$pull)
+throw_nopull_df$goal[is.na(throw_nopull_df$goal)] <- 0
+throw_nopull_df$goal <- as.numeric(throw_nopull_df$goal)
+
+str(throw_nopull_df)
+```
+
+### Try some features
+```{r}
+summary(throw_nopull_df)
+# throw_nopull_df <- throw_nopull_df %>%
+  # mutate(score_diff <- throw_team_score - def_team_score)
+```
+```{r}
+write_csv(throw_nopull_df, "throws_clean.csv")
+```
+
+```{r}
+throw.tr <- rpart(completion ~ Dist + throw_type + Force + Stall + score_diff)
+```
+

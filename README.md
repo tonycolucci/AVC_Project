@@ -1,4 +1,5 @@
 # AVC_Project
+## Mid-Project Update
 
 **Developer:**
 Tony Colucci
@@ -55,7 +56,7 @@ Create a clean, durable website with public access to the data
 ## Backlog
 Label | Content | Score 
 ------- |------| ----------- 
-Theme2.Epic2.Story1 | Create AWS Instancee upon which web app can be deployed | 1
+Theme2.Epic2.Story1 | Create AWS Instance upon which web app can be deployed | 1
 Theme1.Epic1.Story2 | Determine if there are outside sources of data that should be added to improve predictive power | 2
 Theme1.Epic1.Story1 | Consider options for supervised machine learning model to predict the success or failure of an ultimate frisbee throw | 3
 Theme1.Epic2.Story1 | Determine interpretability for different machine learning solutions | 1
@@ -73,3 +74,38 @@ Theme2.Epic2.Story2 | Write HTML that takes in user input and responds by exposi
 
 ### Data Source
 * Ultimate Frisbee Throws Dataset (Collected by Tony Colucci)
+
+## Recreating the App
+
+### Step 1 - Clone Repo
+Clone the repository using the "Clone or Download" button from the main page of the repository
+
+### Step 2 - Create Virtual Environment
+Open a bash seeion to the main folder of the repository, and create a virtual environment. 
+The commands to do so are as follows:
+*pip install virtualenv*
+*virtualenv test-env*
+*source test-env/bin/activate* (*source test-env/Scripts/activate* if on Windows)
+*pip install -r requirements.txt*
+ 
+ (Instructions from Environment Management tutorial by Xiaofeng Zhu)
+
+### Step 3 - Load data into personal s3 repo
+Note: You will need to have [AWSCLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) installed and configured on your computer in order to do this.
+The command to load the data:
+*bash copydata_bash <your-s3-repo>*
+
+This will copy the data to a /tmp folder on in your directory, but will then delete the data from that folder after it has been copied to your repository.
+
+### Step 4 - Load your SQL configuration settings
+Run the bash script that will provide the information to the environment variables that will allow connection to your RDS instance.
+Note: You will need to have an [RDS instance](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateDBInstance.html) configured with MySql in order to do this.
+*bash .mysqlconfig <RDS-user-name> <RDS-password> <RDS-host-name>*
+
+### Step 5 - Create table in RDS Instance
+Run *python sqlalchemy_generate_table.py*
+
+This will create a table in your RDS instance, populate that table with a row and return a query with that row.
+This is a proof of concept for the tables that will hold data for the completed app.
+
+This is the current state of the app. I will update these steps as the code base grows.
