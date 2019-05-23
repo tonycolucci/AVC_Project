@@ -74,3 +74,8 @@ Theme2.Epic2.Story2 | Write HTML that takes in user input and responds by exposi
 
 ### Data Source
 * Ultimate Frisbee Throws Dataset (Collected by Tony Colucci)
+
+# Recreating the App
+
+## Step 1
+Clone the repository 
