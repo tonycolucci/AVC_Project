@@ -22,6 +22,7 @@ class Throw(Base):
 	def __repr__(self):
 		return '<throw %r>' % self.id
 
+
 # Build engine string
 #engine_string = "{conn_type}://{user}:{password}@{host}:{port}/DATABASE_NAME"
 conn_type = "mysql+pymysql"
@@ -29,7 +30,7 @@ user = os.environ.get("MYSQL_USER")
 password = os.environ.get("MYSQL_PASSWORD")
 host = os.environ.get("MYSQL_HOST")
 port = os.environ.get("MYSQL_PORT")
-DATABASE_NAME = 'nw-tonycolucci-db' 
+DATABASE_NAME = 'msia423' 
 engine_string = "{}://{}:{}@{}:{}/{}".\
 format(conn_type, user, password, host, port, DATABASE_NAME)
 
