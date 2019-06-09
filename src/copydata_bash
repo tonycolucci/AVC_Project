@@ -1,0 +1,7 @@
+#!/bin/bash
+
+
+echo "Moving data from s3://nw-tonycolucci-s3/throws_clean.csv to data/throws_clean.csv"
+aws s3 cp --source-region us-east-1 s3://nw-tonycolucci-s3/throws_clean.csv data/throws_clean.csv
+
+fi

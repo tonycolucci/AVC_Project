@@ -1,6 +1,6 @@
 train_model:
-  data_address: "../data/throws_clean.csv"
-  analysis_cols: ["GEO_Xstart","GEO_Ystart","Xdist","Ydist",""]
+  data_address: "../data/analysis_data.csv"
+  analysis_cols: ["Xdist","Ydist","Stall"]
   train_share: 1
   response_col: "completion"
   random_state: 0
@@ -10,6 +10,10 @@ train_model:
 score_model:
   data_address: "../data/throws_clean.csv"
   model_address: "../models/trained_model.pkl"
+
+generate_features:
+  input_address: "../data/throws_clean.csv"
+  output_address: "../data/analysis_data.csv"
 
 app:
   model_address: "../models/trained_model.pkl"

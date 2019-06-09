@@ -8,9 +8,9 @@ def generate_score(model, input):
     """
 
     score = model.predict_proba(input)
-        
+    score = score[0][1]
     # out = logistic.predict_proba(X_test)
-    return score[0][1]
+    return score
 
 if __name__ == "__main__":
     # Load configuration
@@ -20,7 +20,7 @@ if __name__ == "__main__":
 
     model = pickle.load( open( config["model_address"], "rb" ) )
 
-    data_address = config["data_address"]
+    # data_address = config["data_address"]
     # if user_input == "":
     user_input = pd.DataFrame(data={ "Xdist":[30.0], "Ydist":[-5.0], "Stall":[4]})
     

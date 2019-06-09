@@ -1,6 +1,6 @@
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base 
-from sqlalchemy import Column, Integer, String, MetaData
+from sqlalchemy import Column, Integer, String, MetaData, Float
 import sqlalchemy as sql
 import logging
 import pandas as pd
@@ -9,15 +9,13 @@ import os
 Base = declarative_base()
 
 class Throw(Base):
-	"""Create a data model for the database to be set up for capturing songs """
-	__tablename__ = 'throws'
+	"""Create a data model for the database to be set up for capturing throw predictions """
+	__tablename__ = 'predictions'
 	id = Column(Integer, primary_key=True)
-	hand_rl = Column(String(20), unique=False, nullable=True)
-	throw_type = Column(String(100), unique=False, nullable=True)
 	stall = Column(Integer, unique=False, nullable=True)
-	completion = Column(Integer, unique=False, nullable=True)
 	Xdist = Column(Integer, unique=False, nullable=True)
 	Ydist = Column(Integer, unique=False, nullable=True)
+	prediction = Column(Float, unique=False, nullable=True)
   	  
 	def __repr__(self):
 		return '<throw %r>' % self.id
@@ -45,20 +43,20 @@ logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 logger = logging.getLogger(__file__)
 
 
-# create a db session
-Session = sessionmaker(bind=engine)  
-session = Session()
+# # create a db session
+# Session = sessionmaker(bind=engine)  
+# session = Session()
 
-# Build an example throw
-throw1 = Throw(id = 1, hand_rl = "R", throw_type = "F", stall = 2, completion = 1, Xdist = 11, Ydist = 3)  
+# # Build an example throw
+# throw1 = Throw(stall = 2, prediction = 0.9, Xdist = 11, Ydist = 3)
 
-# Add and commit that throw to the engine
-session.add(throw1)
-session.commit()
+# # Add and commit that throw to the engine
+# session.add(throw1)
+# session.commit()
 
 # Run a query to return the throw we just added.
-query = "SELECT * FROM throws WHERE completion == 1"
-df = pd.read_sql(query, con=engine)
-print(df)
+# query = "SELECT * FROM throws WHERE completion == 1"
+# df = pd.read_sql(query, con=engine)
+# print(df)
 
-session.close()
+# session.close()

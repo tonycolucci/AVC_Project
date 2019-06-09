@@ -5,7 +5,7 @@ import pickle
 import pandas as pd
 import numpy as np
 import sklearn
-import os
+# import os
 from sklearn.linear_model import LogisticRegressionCV
 
 logging.basicConfig(level=logging.INFO, format="%(name)-12s %(levelname)-8s %(message)s")
@@ -56,8 +56,8 @@ if __name__ == "__main__":
 
     data_address = config["data_address"]
 
-    analysis_data = open_data(data_address)
-
+    analysis_data = pd.read_csv(data_address)
+    
     train_share = config["train_share"]
     response_col = config["response_col"]
     random_state = config["random_state"]

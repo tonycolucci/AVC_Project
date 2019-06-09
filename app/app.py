@@ -3,9 +3,11 @@ import pickle
 import os
 import yaml
 import pandas as pd
+import sklearn
 
 # os.chdir("../src")
 from src.score_model import generate_score
+from src.postprocess import store_data
 
 # os.chdir("../app")
 
@@ -32,8 +34,12 @@ def main():
                                        columns=["Xdist", "Ydist", "Stall"],
                                        dtype=float)
         
-        prediction = model.predict_proba(input_variables)
-        output = prediction[0][1]
+        # prediction = model.predict_proba(input_variables)
+        output = generate_score(model, input_variables) #prediction[0][1]
+
+        data_to_save = input_variables.assign(prediction=[output])
+
+        store_data(data_to_save)
 
         return flask.render_template('main.html',
                                      original_input={"Xdist":Xdist,
