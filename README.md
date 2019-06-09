@@ -98,7 +98,7 @@ The commands to do so are as follows:
 Note: You will need to have [AWSCLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) installed and configured on your computer in order to do this.
 The command to load the data:
 
-*bash copydata_bash <your-s3-repo>*
+*bash copydata_bash \{your-s3-repo\}*
 
 This will copy the data to a /tmp folder on in your directory, but will then delete the data from that folder after it has been copied to your repository.
 
@@ -106,7 +106,7 @@ This will copy the data to a /tmp folder on in your directory, but will then del
 Run the bash script that will provide the information to the environment variables that will allow connection to your RDS instance.
 Note: You will need to have an [RDS instance](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateDBInstance.html) configured with MySql in order to do this.
 
-*bash .mysqlconfig <RDS-user-name> <RDS-password> <RDS-host-name>*
+*bash .mysqlconfig \{RDS-user-name\} \{RDS-password\} \{RDS-host-name\}*
 
 ### Step 5 - Create table in RDS Instance
 Run: 
