@@ -10,7 +10,7 @@ def generate_score(model, input):
     score = model.predict_proba(input)
         
     # out = logistic.predict_proba(X_test)
-    return score
+    return score[0][1]
 
 if __name__ == "__main__":
     # Load configuration
@@ -18,10 +18,10 @@ if __name__ == "__main__":
         config = yaml.load(yml)
     config = config["score_model"]
 
-    model = pickle.load( open( "trained_model.pkl", "rb" ) )
+    model = pickle.load( open( config["model_address"], "rb" ) )
 
     data_address = config["data_address"]
-    if user_input == "":
-        user_input = pd.DataFrame({ Xdist:-2.0, Ydist:17.0, backhand:1, forehand:0, hammer:0})
+    # if user_input == "":
+    user_input = pd.DataFrame(data={ "Xdist":[30.0], "Ydist":[-5.0], "Stall":[4]})
     
-    generate_score(model,)
+    print(generate_score(model, user_input))

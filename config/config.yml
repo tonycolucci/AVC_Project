@@ -7,5 +7,9 @@ train_model:
   CV_folds: 10
   model_address: "../models/trained_model.pkl"
 
+score_model:
+  data_address: "../data/throws_clean.csv"
+  model_address: "../models/trained_model.pkl"
+
 app:
   model_address: "../models/trained_model.pkl"

@@ -16,10 +16,11 @@ def open_data(data_address):
     """
     throws = pd.read_csv(data_address)
 
-    throw_types = pd.get_dummies(throws.throw_type).rename(columns = {"BH":"backhand","F":"forehand","H":"hammer"})
+    # throw_types = pd.get_dummies(throws.throw_type).rename(columns = {"BH":"backhand","F":"forehand","H":"hammer"})
 
-    throw_analysis = pd.concat([throws,throw_types], axis = 1)[["Xdist","Ydist","backhand","forehand","hammer","completion"]].dropna()
-
+    # throw_analysis = pd.concat([throws,throw_types], axis = 1)[["Xdist","Ydist","backhand","forehand","hammer","completion"]].dropna()
+    throw_analysis = throws[["Xdist","Ydist","Stall","completion"]].dropna()
+    throw_analysis["Ydist"] = abs(throw_analysis["Ydist"])
     throw_analysis.to_csv("../data/analysis_data.csv")
 
     return throw_analysis
