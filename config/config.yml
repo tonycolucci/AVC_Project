@@ -2,7 +2,7 @@ train_model:
   data_address: "data/analysis_data.csv"
   analysis_cols: ["Xdist","Ydist","Stall"]
   train_share: 1
-  response_col: "completion"
+  response_col: ["completion"]
   random_state: 0
   CV_folds: 10
   model_address: "models/trained_model.pkl"

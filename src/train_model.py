@@ -12,11 +12,11 @@ logging.basicConfig(level=logging.INFO, format="%(name)-12s %(levelname)-8s %(me
 logger = logging.getLogger()
 
 
-def split_response(data, response_col): #, train_share, random_state
+def split_response(data, response_col, analysis_cols): #, train_share, random_state
     """
     """
-    features = data.drop(columns = response_col)
-    response = data[[response_col]]
+    features = data[analysis_cols]
+    response = data[response_col]
     # X_train, X_test, y_train, y_test = sklearn.model_selection.train_test_split(feature_cols, response,
     #                                                                             train_size=train_share,
     #                                                                             random_state=random_state)
@@ -47,9 +47,10 @@ if __name__ == "__main__":
     
     train_share = config["train_share"]
     response_col = config["response_col"]
+    analysis_cols = config["analysis_cols"]
     random_state = config["random_state"]
 
-    features, response = split_response(analysis_data, response_col) #, random_state, train_share
+    features, response = split_response(analysis_data, response_col, analysis_cols) #, random_state, train_share
 
     CV_folds = config["CV_folds"]
     model = model_training(features, response, CV_folds)

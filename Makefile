@@ -13,20 +13,20 @@ models/trained_model.pkl: data/analysis_data.csv
 
 model: models/trained_model.pkl
 
-# Create a virtual environment named pennylane-env
-throwstats/Scripts/activate: requirements.txt
+# Create a virtual environment named throwstats
+throwstats/bin/activate: requirements.txt
 	test -d throwstats || virtualenv throwstats
 	. throwstats/bin/activate; pip3 install -r requirements.txt
 	touch throwstats/bin/activate
 
-venv: throwstats/Scripts/activate
+venv: throwstats/bin/activate
 
 clean-env:
-	rm -r throwstats
+	if [ -d throwstats ]; then rm -r throwstats; fi
 
 clean-model:
-	rm models/trained_model.pkl
+	if [ -f models/trained_model.pkl ]; then rm models/trained_model.pkl; fi
 
-clean: clean-env 
+clean: clean-env clean-model
 
 all: venv data model
