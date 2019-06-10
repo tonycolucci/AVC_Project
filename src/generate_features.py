@@ -24,7 +24,7 @@ if __name__ == "__main__":
     with open("config/config.yml","r") as yml:
         config = yaml.load(yml)
     # os.chdir("../src/")
-    config = config["train_model"]
+    config = config["generate_features"]
 
     data_address = config["input_address"]
     output_address = config["output_address"]
