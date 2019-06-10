@@ -14,7 +14,7 @@ def generate_score(model, input):
 
 if __name__ == "__main__":
     # Load configuration
-    with open("../config/config.yml","r") as yml:
+    with open("config/config.yml","r") as yml:
         config = yaml.load(yml)
     config = config["score_model"]
 

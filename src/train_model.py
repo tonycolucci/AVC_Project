@@ -11,19 +11,6 @@ from sklearn.linear_model import LogisticRegressionCV
 logging.basicConfig(level=logging.INFO, format="%(name)-12s %(levelname)-8s %(message)s")
 logger = logging.getLogger()
 
-def open_data(data_address):
-    """
-    """
-    throws = pd.read_csv(data_address)
-
-    # throw_types = pd.get_dummies(throws.throw_type).rename(columns = {"BH":"backhand","F":"forehand","H":"hammer"})
-
-    # throw_analysis = pd.concat([throws,throw_types], axis = 1)[["Xdist","Ydist","backhand","forehand","hammer","completion"]].dropna()
-    throw_analysis = throws[["Xdist","Ydist","Stall","completion"]].dropna()
-    throw_analysis["Ydist"] = abs(throw_analysis["Ydist"])
-    throw_analysis.to_csv("../data/analysis_data.csv")
-
-    return throw_analysis
 
 def split_response(data, response_col): #, train_share, random_state
     """
@@ -49,7 +36,7 @@ def model_training(X_train, y_train, CV_folds):
 if __name__ == "__main__":
     # Load configuration
     # os.chdir("../config/")
-    with open("../config/config.yml","r") as yml:
+    with open("config/config.yml","r") as yml:
         config = yaml.load(yml)
     # os.chdir("../src/")
     config = config["train_model"]

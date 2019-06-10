@@ -48,7 +48,7 @@ if __name__ == "__main__":
   logger = logging.getLogger(__file__)
   # Load configuration
   # os.chdir("../config/")
-  with open("../config/config.yml","r") as yml:
+  with open("config/config.yml","r") as yml:
       config = yaml.load(yml)
   # os.chdir("../src/")
   config = config["postprocess"]

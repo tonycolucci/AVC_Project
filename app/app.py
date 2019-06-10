@@ -11,7 +11,7 @@ from src.postprocess import store_data
 
 # os.chdir("../app")
 
-with open("../config/config.yml","r") as yml:
+with open("config/config.yml","r") as yml:
     config = yaml.load(yml)
 config = config["app"]
 
@@ -49,7 +49,7 @@ def main():
                                      )
     
 if __name__ == '__main__':
-    with open("../config/hwconfig.yml","r") as yml:
+    with open("config/hwconfig.yml","r") as yml:
         config = yaml.load(yml)
     config = config["app"]
     app.run()

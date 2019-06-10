@@ -21,7 +21,7 @@ def open_data(data_address, output_address):
 if __name__ == "__main__":
     # Load configuration
     # os.chdir("../config/")
-    with open("../config/config.yml","r") as yml:
+    with open("config/config.yml","r") as yml:
         config = yaml.load(yml)
     # os.chdir("../src/")
     config = config["train_model"]
