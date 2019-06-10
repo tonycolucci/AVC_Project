@@ -9,7 +9,7 @@ import sklearn
 from src.score_model import generate_score
 from src.postprocess import store_data
 
-os.chdir("../")
+# os.chdir("../")
 
 with open("config/config.yml","r") as yml:
     config = yaml.load(yml)
@@ -19,9 +19,14 @@ with open( config["model_address"], "rb" ) as file:
     model = pickle.load(file)
 
 app = flask.Flask(__name__, template_folder='templates')
+
+app.config.from_pyfile("flask_config.py")
+# print(app.config["HOST"])
+
 @app.route('/', methods=['GET', 'POST'])
 
 def main():
+    # app.run(debug=app.config["DEBUG"], port=app.config["PORT"], host=app.config["HOST"])
     if flask.request.method == 'GET':
         return(flask.render_template('main.html'))
     
@@ -50,9 +55,9 @@ def main():
                                      )
     
 if __name__ == '__main__':
-    with open("config/hwconfig.yml","r") as yml:
-        config = yaml.load(yml)
-    config = config["app"]
-    app.run()
+    # with open("config/hwconfig.yml","r") as yml:
+    #     config = yaml.load(yml)
+    # config = config["app"]
+    app.run(debug=True, port=3000, host="18.222.222.153")
 
     
