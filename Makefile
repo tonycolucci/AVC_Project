@@ -29,4 +29,7 @@ clean-model:
 
 clean: clean-env clean-model
 
-all: venv data model
+app:
+	python3 run.py
+
+all: venv data model app
