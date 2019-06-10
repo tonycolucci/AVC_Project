@@ -16,8 +16,11 @@ model: models/trained_model.pkl
 # Create a virtual environment named pennylane-env
 throwstats/Scripts/activate: requirements.txt
 	test -d throwstats || virtualenv throwstats
-	. throwstats/Scripts/activate; pip install -r requirements.txt
-	touch throwstats/Scripts/activate
+	test -d throwstats/Scripts | . throwstats/Scripts/activate
+	test -d throwstats/bin | . throwstats/bin/activate
+	pip install -r requirements.txt
+	test -d throwstats/Scripts | touch throwstats/Scripts/activate
+	test -d throwstats/bin | touch throwstats/bin/activate
 
 venv: throwstats/Scripts/activate
 
