@@ -1,7 +1,6 @@
 train_model:
   data_address: "data/analysis_data.csv"
   analysis_cols: ["Xdist","Ydist","Stall"]
-  train_share: 1
   response_col: ["completion"]
   random_state: 0
   CV_folds: 10
@@ -17,3 +16,6 @@ generate_features:
 
 app:
   model_address: "models/trained_model.pkl"
+
+test:
+  gen_features_data: "data/throws_clean.csv"

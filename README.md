@@ -1,4 +1,4 @@
-# AVC_Project
+# ThrowStats
 ## Mid-Project Update
 
 **Developer:**
