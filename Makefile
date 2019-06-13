@@ -1,4 +1,4 @@
-.PHONY: all venv data model
+.PHONY: all venv data model app
 
 data/throws_clean.csv:
 	copydata_bash
@@ -32,4 +32,9 @@ clean: clean-env clean-model
 app:
 	python3 run.py
 
-all: venv data model app
+app_local:
+	python run_local.py
+
+prep: venv data model
+
+all: clean prep app

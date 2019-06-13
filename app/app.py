@@ -20,7 +20,7 @@ with open( config["model_address"], "rb" ) as file:
 
 app = flask.Flask(__name__, template_folder='templates')
 
-app.config.from_pyfile("flask_config.py")
+# app.config.from_pyfile("flask_config.py")
 # print(app.config["HOST"])
 
 @app.route('/', methods=['GET', 'POST'])
@@ -58,6 +58,6 @@ if __name__ == '__main__':
     # with open("config/hwconfig.yml","r") as yml:
     #     config = yaml.load(yml)
     # config = config["app"]
-    app.run(debug=True, port=3000, host="18.222.222.153")
+    app.run()
 
     
