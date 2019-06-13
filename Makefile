@@ -4,19 +4,19 @@ data/throws_clean.csv:
 	copydata_bash
 
 data/analysis_data.csv: data/throws_clean.csv
-	python3 src/generate_features.py
+	python src/generate_features.py
 
 data: data/analysis_data.csv
 
 models/trained_model.pkl: data/analysis_data.csv
-	python3 src/train_model.py
+	python src/train_model.py
 
 model: models/trained_model.pkl
 
 # Create a virtual environment named throwstats
 throwstats/bin/activate: requirements.txt
 	test -d throwstats || virtualenv throwstats
-	. throwstats/bin/activate; pip3 install -r requirements.txt
+	. throwstats/bin/activate; pip install -r requirements.txt
 	touch throwstats/bin/activate
 
 venv: throwstats/bin/activate
@@ -30,7 +30,7 @@ clean-model:
 clean: clean-env clean-model
 
 app:
-	python3 run.py
+	python run.py
 
 app_local:
 	python run_local.py

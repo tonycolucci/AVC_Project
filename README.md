@@ -76,6 +76,7 @@ Theme2.Epic2.Story2 | Write HTML that takes in user input and responds by exposi
 * Ultimate Frisbee Throws Dataset (Collected by Tony Colucci)
 
 ## Recreating the App
+NOTE: The app is designed to run on Python 3. If your bash session is configured so that the "python" command invokes Python 2, you can update the Makefile to use "python3" in place of "python" and "pip3" in place of "pip".
 
 ### Step 1 - Clone Repo
 Clone the repository using the "Clone or Download" button from the main page of the repository
